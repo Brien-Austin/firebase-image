@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { imageStorage } from "./firebase.config";
+import { v4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const App = () => {
   const [img, setImg] = useState("");
@@ -7,6 +10,13 @@ const App = () => {
 
   const handleUpload = (e) => {
     console.log(e.target.files[0]);
+    const imgs = ref(imageStorage, `Imgs${v4()}`);
+    uploadBytes(imgs, e.target.files[0]).then((data) => {
+      console.log(data, "imgs");
+      getDownloadURL(data.ref).then((val) => {
+        console.log(val);
+      });
+    });
   };
   return (
     <>

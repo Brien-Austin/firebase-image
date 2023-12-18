@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getStore } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const imageStorage = getStore(app);
+const imageStorage = getStorage(app);
 const urlStorage = getFirestore(app);
 
 export { imageStorage, urlStorage };
